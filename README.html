@@ -1,0 +1,120 @@
+<meta charset="utf-8">
+<h1>mGBA</h1>
+
+<p>mGBA is a new emulator for running Game Boy Advance games. It aims to be faster and more accurate than many existing Game Boy Advance emulators, as well as adding features that other emulators lack.</p>
+
+<p>Up-to-date news and downloads can be found at <a href="https://endrift.com/mgba/">endrift.com/mgba</a>.</p>
+
+<h2>Features</h2>
+
+<ul>
+<li>Near full Game Boy Advance hardware support<a href="#missing"><sup>[1]</sup></a>.</li>
+<li>Fast emulation. Known to run at full speed even on low end hardware, such as netbooks.</li>
+<li>Qt and SDL ports for a heavy-weight and a light-weight frontend.</li>
+<li>Save type detection, even for flash memory size<a href="#flashdetect"><sup>[2]</sup></a>.</li>
+<li>Real-time clock support, even without configuration.</li>
+<li>A built-in BIOS implementation, and ability to load external BIOS files.</li>
+<li>Turbo/fast-forward support by holding Tab.</li>
+<li>Frameskip, configurable up to 9.</li>
+<li>Screenshot support.</li>
+<li>9 savestate slots. Savestates are also viewable as screenshots.</li>
+<li>Video and GIF recording.</li>
+<li>Remappable controls for both keyboards and gamepads.</li>
+<li>Loading from ZIP files.</li>
+<li>IPS and UPS patch support.</li>
+<li>Game debugging via a command-line interface (not available with Qt port).</li>
+</ul>
+
+<h3>Planned features</h3>
+
+<ul>
+<li>Local and networked multiplayer link cable support (<a href="https://endrift.com/mgba/bugs/show_bug.cgi?id=1">Bug #1</a>).</li>
+<li>Dolphin/JOY bus link cable support (<a href="https://endrift.com/mgba/bugs/show_bug.cgi?id=73">Bug #73</a>).</li>
+<li>Cheat codes (<a href="https://endrift.com/mgba/bugs/show_bug.cgi?id=58">Bug #58</a>).</li>
+<li>Re-recording support for tool-assist runs. (<a href="https://endrift.com/mgba/bugs/buglist.cgi?quicksearch=TASBlocker">Bugzilla keyword "TASBlocker"</a>)</li>
+<li>Lua support for scripting (<a href="https://endrift.com/mgba/bugs/show_bug.cgi?id=62">Bug #62</a>).</li>
+<li>A comprehensive debug suite (<a href="https://endrift.com/mgba/bugs/show_bug.cgi?id=132">Bug #132</a>).</li>
+<li>libretro core for RetroArch and OpenEmu (<a href="https://endrift.com/mgba/bugs/show_bug.cgi?id=86">Bug #86</a>).</li>
+</ul>
+
+<h2>Supported Platforms</h2>
+
+<ul>
+<li>Windows Vista or newer</li>
+<li>OS X 10.7 (Lion)<a href="#osxver"><sup>[3]</sup></a> or newer</li>
+<li>Linux</li>
+<li>FreeBSD</li>
+</ul>
+
+<p>Other Unix-like platforms work as well, but are untested.</p>
+
+<h3>System requirements</h3>
+
+<p>Requirements are minimal. Any computer that can run Windows Vista or newer should be able to handle emulation. Support for OpenGL 1.1 or newer is also required.</p>
+
+<h2>Downloads</h2>
+
+<p>Downloads can be found on the official website, in the <a href="https://endrift.com/mgba/downloads.html">Downloads</a> section. The source code can be found on <a href="https://github.com/mgba-emu/mgba/">GitHub</a>.</p>
+
+<h2>Controls</h2>
+
+<p>Controls are configurable in the menu. The default gamepad controls are mapped so as to work with a DualShock 3. The default keyboard controls are as follows:</p>
+
+<ul>
+<li><strong>A</strong>: X</li>
+<li><strong>B</strong>: Z</li>
+<li><strong>L</strong>: A</li>
+<li><strong>R</strong>: S</li>
+<li><strong>Start</strong>: Enter</li>
+<li><strong>Select</strong>: Backspace</li>
+</ul>
+
+<h2>Compiling</h2>
+
+<p>Compiling requires using CMake 2.8.11 or newer. To use CMake to build on a Unix-based system, the recommended commands are as follows:</p>
+
+<pre><code>mkdir build
+cd build
+cmake ..
+make
+make install
+</code></pre>
+
+<p>Dependencies that are installed will be automatically detected, and features that are disabled if the dependencies are not found will be shown at the end of the <code>cmake</code> command.</p>
+
+<h3>Dependencies</h3>
+
+<p>mGBA has no hard dependencies, however, the following optional dependencies are required for specific features. The features will be disabled if the dependencies can't be found.</p>
+
+<ul>
+<li>Qt 5: for the GUI frontend. Qt Multimedia or SDL are required for audio.</li>
+<li>SDL: for a more basic frontend and gamepad support in the Qt frontend. SDL 2 is recommended, but 1.2 is supported.</li>
+<li>zlib and libpng: for screenshot support and savestate-in-PNG support.</li>
+<li>libedit: for command-line debugger support.</li>
+<li>ffmpeg or libav: for video recording.</li>
+<li>libzip: for loading ROMs stored in zip files.</li>
+<li>ImageMagick: for GIF recording.</li>
+</ul>
+
+<h2>Footnotes</h2>
+
+<p><a name="missing">[1]</a> Currently missing features are</p>
+
+<ul>
+<li>OBJ window for modes 3, 4 and 5 (<a href="https://endrift.com/mgba/bugs/show_bug.cgi?id=5">Bug #5</a>)</li>
+<li>Mosaic for transformed OBJs (<a href="https://endrift.com/mgba/bugs/show_bug.cgi?id=9">Bug #9</a>)</li>
+<li>Cartridges with light sensors (Boktai: The Sun is in Your Hand and Boktai 2: Solar Boy Django) (<a href="https://endrift.com/mgba/bugs/show_bug.cgi?id=46">Bug #46</a>)</li>
+<li>BIOS call RegisterRamReset is currently stubbed out (<a href="https://endrift.com/mgba/bugs/show_bug.cgi?id=141">Bug #141</a>)</li>
+<li>Audio channel reset flags (<a href="https://endrift.com/mgba/bugs/show_bug.cgi?id=142">Bug #142</a>)</li>
+<li>Cartridges with tilt sensors (Yoshi's Universal Gravitation/Yoshi's Topsy-Turvy) (<a href="https://endrift.com/mgba/bugs/show_bug.cgi?id=143">Bug #143</a>)</li>
+</ul>
+
+<p><a name="flashdetect">[2]</a> Flash memory size detection does not work in some cases, and may require overrides, which are not yet user configurable. Filing a bug is recommended if such a case is encountered.</p>
+
+<p><a name="osxver">[3]</a> 10.7 is only needed for the Qt port. The SDL port is known to work on 10.6, and may work on older.</p>
+
+<h2>Copyright</h2>
+
+<p>mGBA is Copyright © 2013 – 2014 Jeffrey Pfau. It is distributed under the <a href="https://www.mozilla.org/MPL/2.0/">Mozilla Public License version 2.0</a>. A copy of the license is available in the distributed LICENSE file.</p>
+
+<p>mGBA contains <a href="https://code.google.com/p/inih/">inih</a>, which is copyright © 2009 Brush Technology and used under a BSD 3-clause license.</p>
